@@ -27,9 +27,8 @@ const Home = () => {
     history.push('/signin');
   }
 
-
   return (
-    <>
+    <ChakraProvider>
       <Box bg="#E3EFEE" width="100vw" height="100vh">
         <Box width="100vw" height="20vh" paddingTop="40px">
           <HStack>
@@ -38,9 +37,6 @@ const Home = () => {
             <Flex flexWrap="wrap" marginRight="20px">
               <Button className="btn1" color="#5A4012" border="none" borderRadius="50px" fontSize="17px" bg="transparent" height="50px" width="150px">Contact Us</Button>
               <Button onClick={startSignIn} className="btn1"  color="#5A4012" border="none" borderRadius="50px" fontSize="17px" bg="transparent" height="50px" width="150px">Sign In</Button>
-              <Button onClick={startSignIn} className="btn1"  color="#5A4012" border="none" borderRadius="50px" fontSize="17px" bg="transparent" height="50px" width="150px">Ayush</Button>
-              <Button>Ayush</Button>
-
             </Flex>
           </HStack>
           <Box className="sand" height="80vh">
@@ -52,7 +48,6 @@ const Home = () => {
             </VStack>
           </Box>
           <Box width="100vw" bg="#E3EFEE" height="100vh">
-
           </Box>
           <Box className="mountain" height="100vh">
             <Flex flexWrap="wrap" justifyContent="center" width="50vw" paddingTop="80px">
@@ -62,7 +57,7 @@ const Home = () => {
           </Box>
         </Box>
       </Box>
-    </>
+    </ChakraProvider>
   )
 }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
-
+import { ChakraProvider, HStack, Box, Flex, Spacer, Image, VStack, Text, theme } from '@chakra-ui/react';
+import { Button } from "@chakra-ui/button"
 const SignUpPage = () => {
 
     const [user, setUser] = React.useState({
