@@ -147,7 +147,7 @@ const Home = () => {
                 fontSize="17px"
                 bg="#C6EAE7"
                 height="50px"
-                width="170px">Register Now</Button>
+                width="170px">Travel Now</Button>
               <Modal
                 initialFocusRef={initialRef1}
                 finalFocusRef={finalRef1}
