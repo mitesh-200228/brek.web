@@ -57,11 +57,11 @@
 }
 .secondSlide{
     background: url('../images/slide2.svg');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 .slide4{
     background: url('../images/slide4.svg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }

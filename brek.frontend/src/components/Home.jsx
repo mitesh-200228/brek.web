@@ -157,7 +157,7 @@ const Home = () => {
 
           {/* Page-2 */}
 
-          <Box className="secondSlide" width="100%" height="100vh">
+          <Box className="secondSlide" width="100%" height="123vh">
             <Modal
               initialFocusRef={initialRef1}
               finalFocusRef={finalRef1}
@@ -209,7 +209,7 @@ const Home = () => {
 
           {/* Page-3 */}
 
-          <Box width="100%" className="mountain" height="100vh">
+          <Box width="100%" className="mountain" height="120vh">
             <Box width="100%">
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center" paddingTop="80px">
                 <Text color="#15233E" fontWeight="650" fontSize="50px">we take your brek</Text>
@@ -225,7 +225,7 @@ const Home = () => {
 
           {/* Page-4 */}
 
-          <Box className="slide4" width="100%" height="100vh">
+          <Box className="slide4" width="100%" height="130vh">
 
           </Box>
 
