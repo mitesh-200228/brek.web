@@ -177,8 +177,6 @@ const Home = () => {
                       <InputLeftAddon children="+91" />
                       <Input name="phone" onChange={handleInput} value={user.phone} type="tel" placeholder="Phone Number" />
                     </InputGroup>
-                    <FormLabel mt={4}>Usename</FormLabel>
-                    <Input name="username" type="text" onChange={handleInput} value={user.username} placeholder="Make a brek.username" />
                     <FormLabel mt={4}>E-Mail</FormLabel>
                     <Input name="email" type="email" onChange={handleInput} value={user.email} ref={initialRef} placeholder="E-Mail" />
                     <FormLabel mt={4}>Password</FormLabel>
@@ -220,7 +218,7 @@ const Home = () => {
                 <Text color="#15233E" fontWeight="650" fontSize="50px">seriously.</Text>
               </Flex>
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center">
-                <Text color="#15233E" fontWeight="650" width="28vw" className="lasttext" fontSize="12px">we at brek.club understand how hectic and tiresome planning an entire trip can be. Therefore we decided to do it for you,</Text>
+                <Text color="#15233E" fontWeight="650" width="28vw" className="lasttext" fontSize="12px">we at brek.club understand how hectic and tiresome planning an entire trip can be. Therefore we decided to do it for you</Text>
               </Flex>
             </Box>
           </Box>
