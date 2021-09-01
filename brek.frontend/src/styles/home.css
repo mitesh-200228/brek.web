@@ -9,7 +9,6 @@
     height: 50px;
 }
 .btn1{
-    /* width: 170px; */
     font-family: 'Rambla', sans-serif;
     font-weight: 650;
 }
@@ -33,6 +32,12 @@
     }
 }
 
+@media only screen and (max-width:544px){
+    .lasttext{
+        letter-spacing: 1px;
+    }
+}
+
 .img1{
     background-size: cover;
     position: relative;
@@ -49,4 +54,14 @@
     background: url('../images/mountain.svg');
     background-size: cover;
     background-repeat: no-repeat;
+}
+.secondSlide{
+    background: url('../images/slide2.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.slide4{
+    background: url('../images/slide4.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }

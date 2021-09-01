@@ -27,7 +27,7 @@ const Another = () => {
             }
         }catch(err) {
             console.log(err);
-            history.push('/signin');
+            history.push('/');
         }
     };
 
