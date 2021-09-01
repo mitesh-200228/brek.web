@@ -17,7 +17,6 @@ import {
   InputRightElement,
   handleClick,
   InputLeftAddon,
-  show
 } from '@chakra-ui/react';
 import logo from '../images/logo_vector.png';
 import '../styles/home.css';
@@ -48,11 +47,18 @@ const Home = () => {
 
   const initialRef = React.useRef();
   const finalRef = React.useRef();
-  const {isOpen, onOpen, onClose} = useDisclosure()
+  const {isOpen: isOpen, onOpen: onOpen, onClose: onClose} = useDisclosure()
 
   const initialRef1 = React.useRef();
   const finalRef1 = React.useRef();
-   const {isOpen1, onOpen1, onClose1} = useDisclosure()
+  const {isOpen: isOpen1, onOpen: onOpen1, onClose: onClose1} = useDisclosure()
+
+  const [show, setShow] = React.useState(false)
+  const handleClick = () => setShow(!show)
+
+  const [show1, setShow1] = React.useState(false)
+  const handleClick1 = () => setShow1(!show1)
+
 
   return (
     <ChakraProvider>
@@ -95,9 +101,9 @@ const Home = () => {
                   <ModalCloseButton/>
                   <ModalBody pb={6}>
                     <FormControl>
-                      <FormLabel>E-Mail</FormLabel>
+                      <FormLabel >E-Mail</FormLabel>
                       <Input ref={initialRef} placeholder="E-Mail"/>
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel mt={4}>Password</FormLabel>
                       <Input placeholder="Password"/>
                     </FormControl>
                   </ModalBody>
@@ -145,8 +151,8 @@ const Home = () => {
               <Modal
                 initialFocusRef={initialRef1}
                 finalFocusRef={finalRef1}
-                isOpen={isOpen}
-                onClose={onClose}
+                isOpen={isOpen1}
+                onClose={onClose1}
                 isCentered>
                 <ModalOverlay/>
                 <ModalContent>
@@ -157,12 +163,14 @@ const Home = () => {
                       <FormLabel mt={4}>Full name</FormLabel>
                       <Input placeholder="Your Name"/>
                       <FormLabel mt={4}>Phone Number</FormLabel>
+                      <InputGroup>
                       <InputLeftAddon children="+91"/>
                       <Input type="tel" placeholder="Phone Number"/>
+                      </InputGroup>
                       <FormLabel mt={4}>Usename</FormLabel>
                       <Input placeholder="Make a brek.username"/>
 
-                      <FormLabel>E-Mail</FormLabel>
+                      <FormLabel mt={4}>E-Mail</FormLabel>
                       <Input ref={initialRef} placeholder="E-Mail"/>
                       <FormLabel mt={4}>Password</FormLabel>
                       <InputGroup size="md">
@@ -184,13 +192,13 @@ const Home = () => {
                       <InputGroup size="md">
                         <Input
                           pr="4.5rem"
-                          type={show
+                          type={show1
                           ? "text"
                           : "password"}
                           placeholder="Confirm password"/>
                         <InputRightElement width="4.5rem">
-                          <Button h="1.75rem" size="sm" onClick={handleClick}>
-                            {show
+                          <Button h="1.75rem" size="sm" onClick={handleClick1}>
+                            {show1
                               ? "Hide"
                               : "Show"}
                           </Button>
@@ -204,7 +212,7 @@ const Home = () => {
                     <Button colorScheme="blue" mr={3}>
                       Sign Up
                     </Button>
-                    <Button onClick={onClose}>Cancel</Button>
+                    <Button onClick={onClose1}>Cancel</Button>
                   </ModalFooter>
                 </ModalContent>
               </Modal>
