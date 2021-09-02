@@ -132,7 +132,7 @@ const Home = () => {
             </Flex>
           </HStack>
 
-          <Box className="sand" height="85vh">
+          <Box className="sand" height="70vh">
             <VStack>
               <Text fontSize="40px" paddingTop="50px" color="#5A4012" fontWeight="700">
                 <h2 className="text1">we make free, custom</h2>
