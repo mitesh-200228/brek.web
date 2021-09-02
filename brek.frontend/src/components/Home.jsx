@@ -157,7 +157,7 @@ const Home = () => {
 
           {/* Page-2 */}
 
-          <Box className="secondSlide" width="100%" height="123vh">
+          <Box className="secondSlide" width="100%" height="100vh">
             <Modal
               initialFocusRef={initialRef1}
               finalFocusRef={finalRef1}
