@@ -59,6 +59,7 @@
     background: url('../images/slide2.svg');
     background-size: cover;
     background-repeat: no-repeat;
+    height: 110%;
 }
 .slide4{
     background: url('../images/slide4.svg');

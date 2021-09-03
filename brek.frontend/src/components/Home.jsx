@@ -152,13 +152,7 @@ const Home = () => {
                 bg="#C6EAE7"
                 height="50px"
                 width="170px">Travel Now</Button>
-            </VStack>
-          </Box>
-
-          {/* Page-2 */}
-
-          <Box className="secondSlide" width="100%" height="100vh">
-            <Modal
+                <Modal
               initialFocusRef={initialRef1}
               finalFocusRef={finalRef1}
               isOpen={isOpen1}
@@ -172,9 +166,9 @@ const Home = () => {
                   <FormControl>
                     <FormLabel mt={4}>Full name</FormLabel>
                     <Input name="FullName" type="text" onChange={handleInput} value={user.FullName} placeholder="Your Name" />
-                    <FormLabel mt={4}>Phone Number</FormLabel>
+                    <FormLabel mt={4}>brek.username</FormLabel>
                     <InputGroup>
-                      <InputLeftAddon children="+91" />
+                      <InputLeftAddon children="brek." opacity='0.7' />
                       <Input name="phone" onChange={handleInput} value={user.phone} type="tel" placeholder="Phone Number" />
                     </InputGroup>
                     <FormLabel mt={4}>E-Mail</FormLabel>
@@ -205,6 +199,13 @@ const Home = () => {
                 </ModalFooter>
               </ModalContent>
             </Modal>
+            </VStack>
+          </Box>
+
+        <Box height="100px" color='white'/>
+          {/* Page-2 */}
+
+          <Box className="secondSlide" width="100%" height="100vh">
           </Box>
 
           {/* Page-3 */}
@@ -212,13 +213,13 @@ const Home = () => {
           <Box width="100%" className="mountain" height="120vh">
             <Box width="100%">
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center" paddingTop="80px">
-                <Text color="#15233E" fontWeight="650" fontSize="50px">we take your brek</Text>
+                <Text color="#15233E" fontWeight="650" fontSize="60px">we take your brek</Text>
               </Flex>
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center">
-                <Text color="#15233E" fontWeight="650" fontSize="50px">seriously.</Text>
+                <Text color="#15233E" fontWeight="650" fontSize="60px" mt="-5px">seriously.</Text>
               </Flex>
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center">
-                <Text color="#15233E" fontWeight="650" width="28vw" className="lasttext" fontSize="12px">we at brek.club understand how hectic and tiresome planning an entire trip can be. Therefore we decided to do it for you</Text>
+                <Text color="#15233E" fontWeight="650" width="28vw" className="lasttext" fontSize="19px">we at brek.club understand how hectic and tiresome planning an entire trip can be. Therefore we decided to do it for you</Text>
               </Flex>
             </Box>
           </Box>
