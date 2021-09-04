@@ -45,10 +45,12 @@
 }
 
 .sand{
+    position: relative;
+    top: 100px;
     background: url('../images/sand.svg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position-y: 17px;
+    background-position-y: -17px;
 }
 .mountain{
     background: url('../images/mountain.svg');
@@ -65,4 +67,10 @@
     background: url('../images/slide4.svg');
     background-repeat: no-repeat;
     background-size: contain;
+}
+.react-calendar__navigation,.react-calendar__month-view__days,.react-calendar__navigation__label{
+    color: #000;
+}
+.css-y02vo3{
+    height: 0px;
 }
