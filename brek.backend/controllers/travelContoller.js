@@ -9,7 +9,6 @@ function TravelController() {
             if (!FullName || !PhoneNumber || !Email || !CurrentLocation || !TravelDestination) {
                 return res.status(400).json({ message: "Please Enter All Details" });
             } else {
-
                 if (!req.cookies.brekweb) {
                     return res.status(400).send("Login First")
                 }
@@ -29,6 +28,15 @@ function TravelController() {
                     }
                 }
             }
+        },async userdata(){
+            const user_id = req.cookies.brekweb;
+            const data = await user.findOne({_id:user_id});
+
+            if(!data){
+                return res.status(400).json({message:"Register First!"});
+            }
+            const name = data.FullName;
+            return res.status(200).json({name});
         }
     }
 }
