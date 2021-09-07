@@ -9,7 +9,10 @@ import {Tabs, TabList, Tab, TabPanel, TabPanels} from "@chakra-ui/react"
 import SignUpPage from './SignUpPage';
 import SignInPage from './SignInPage';
 import Slide4 from '../images/slide4.svg';
+import {FcGoogle} from 'react-icons/fc';
 
+//Google Sign in/up
+import googleSignIn from './firebase'
 
 const Home = () => {
 
@@ -129,10 +132,13 @@ const Home = () => {
                         </FormControl>
                       </ModalBody>
                       <ModalFooter>
+                      <HStack>
+                        <Button onClick={googleSignIn} colorScheme="cyan" leftIcon={<FcGoogle fontSize='20px'/>}>Google</Button>
                         <Button type="submit" onClick={loginUser} colorScheme="blue" mr={3}>
                           Sign In
                         </Button>
                         <Button onClick={onClose}>Cancel</Button>
+                      </HStack>
                       </ModalFooter>
                     </TabPanel>
 
@@ -166,8 +172,11 @@ const Home = () => {
                       </ModalBody>
                       
                       <ModalFooter>
+                      <HStack>
+                        <Button onClick={googleSignIn} colorScheme="teal" leftIcon={<FcGoogle fontSize='20px'/>}>Google</Button>
                         <Button onClick={PostData} type="submit" colorScheme="green" mr={3}>Sign Up</Button>
                         <Button onClick={onClose}>Cancel</Button>
+                      </HStack>
                       </ModalFooter>
                     </TabPanel>
                   </TabPanels>
