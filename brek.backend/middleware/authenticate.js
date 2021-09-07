@@ -14,6 +14,12 @@ async function authenticate(req,res,next){
         req.token = token;
         req.rootUser = rootUser;
         req.userID = rootUser._id;
+        
+        res.cookie("brekweb",verifyToken._id,{
+            expiresIn: 10000,
+            httpOnly:true,
+        });
+        
         next();
     }catch(err){
         return res.status(401).send('Unauthenticated token');

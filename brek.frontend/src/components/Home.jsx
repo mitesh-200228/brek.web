@@ -16,7 +16,16 @@ import googleSignIn from './firebase'
 
 const Home = () => {
 
-  //Login System Connection -------------------------------------------------------
+  //--------------------------------------------------------------Signin System connection
+  //--------------------------------------------------------------Signin System connection
+  //--------------------------------------------------------------Signin System connection
+  //--------------------------------------------------------------Signin System connection
+  //--------------------------------------------------------------Signin System connection
+  //--------------------------------------------------------------Signin System connection
+  //--------------------------------------------------------------Signin System connection
+  //--------------------------------------------------------------Signin System connection
+  //--------------------------------------------------------------Signin System connection
+
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const history = useHistory();
@@ -41,9 +50,18 @@ const Home = () => {
     }
   }
 
-  //Signup System connection
+  //--------------------------------------------------------------Signup System connection
+  //--------------------------------------------------------------Signup System connection
+  //--------------------------------------------------------------Signup System connection
+  //--------------------------------------------------------------Signup System connection
+  //--------------------------------------------------------------Signup System connection
+  //--------------------------------------------------------------Signup System connection
+  //--------------------------------------------------------------Signup System connection
+  //--------------------------------------------------------------Signup System connection
+  //--------------------------------------------------------------Signup System connection
+
   const [user, setUser] = React.useState({
-    FullName:"", email: "", phone: "", username: "", password: "", confirmPassword: ""
+    FullName:"", email: "", phone: "", password: "", confirmPassword: ""
   });
   let name, value;
 
@@ -56,7 +74,7 @@ const Home = () => {
 
   const PostData = async (e) => {
     e.preventDefault();
-    const { FullName, email, phone, username, password, confirmPassword } = user;
+    const { FullName, email, phone, password, confirmPassword } = user;
 
     const res = await fetch("/signup", {
       method: "POST",
@@ -64,7 +82,7 @@ const Home = () => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        FullName, email, phone, username, password, confirmPassword
+        FullName, email, phone, password, confirmPassword
       })
     });
 
@@ -78,6 +96,61 @@ const Home = () => {
       history.push("/");
     }
   }
+  //----------------------------------------------------------------Travel Form Submission
+  //----------------------------------------------------------------Travel Form Submission
+  //----------------------------------------------------------------Travel Form Submission
+  //----------------------------------------------------------------Travel Form Submission
+  //----------------------------------------------------------------Travel Form Submission
+  //----------------------------------------------------------------Travel Form Submission
+  //----------------------------------------------------------------Travel Form Submission
+  //----------------------------------------------------------------Travel Form Submission
+  //----------------------------------------------------------------Travel Form Submission
+
+  const [travel,setTravel] = React.useState({
+    FullName:"",PhoneNumber:"",Email:"",CurrentLocation:"",TravelDestination:"",Date:""
+  });
+
+  const seter = (e) => {
+    value = e.target.value;
+    name = e.target.name;
+    setTravel({...travel,[name]:value});
+  }
+
+  const PostTravelData = async (e) => {
+    e.preventDefault();
+    const {FullName,PhoneNumber,Email,CurrentLocation,TravelDestination} = travel;
+
+    const res = await fetch('userTravelData',{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        FullName,PhoneNumber,Email,CurrentLocation,TravelDestination
+      })
+    });
+
+    const y1 = await res.json();
+    console.log(y1);
+    if (y1.status === 422 || !y1) {
+      window.alert("Invalid Registration");
+      console.log("Invalid Registration");
+    } else {
+      window.alert("Registration Successful");
+      history.push("/");
+    }
+  }
+
+  //----------------------------------------------------------------Chakra designing stuff
+  //----------------------------------------------------------------Chakra designing stuff
+  //----------------------------------------------------------------Chakra designing stuff
+  //----------------------------------------------------------------Chakra designing stuff
+  //----------------------------------------------------------------Chakra designing stuff
+  //----------------------------------------------------------------Chakra designing stuff
+  //----------------------------------------------------------------Chakra designing stuff
+  //----------------------------------------------------------------Chakra designing stuff
+  //----------------------------------------------------------------Chakra designing stuff
+
 
   const initialRef = React.useRef();
   const finalRef = React.useRef();
@@ -93,10 +166,17 @@ const Home = () => {
   const [show1, setShow1] = React.useState(false)
   const handleClickSignup1 = () => setShow1(!show1)
 
+  //-----------------------------------------------------------------CHAKRA UI
+  //-----------------------------------------------------------------CHAKRA UI
+  //-----------------------------------------------------------------CHAKRA UI
+  //-----------------------------------------------------------------CHAKRA UI
+  //-----------------------------------------------------------------CHAKRA UI
+  //-----------------------------------------------------------------CHAKRA UI
+  //-----------------------------------------------------------------CHAKRA UI
+  //-----------------------------------------------------------------CHAKRA UI
+  //-----------------------------------------------------------------CHAKRA UI
+  //-----------------------------------------------------------------CHAKRA UI
 
-  const login = () => {
-    <SignInPage />
-  }
 
   return (
     <ChakraProvider>
@@ -147,10 +227,10 @@ const Home = () => {
                         <FormControl>
                           <FormLabel mt={4}>Full name</FormLabel>
                             <Input name="FullName" type="text" onChange={handleInput} value={user.FullName} placeholder="Your Name" />
-                          <FormLabel mt={4}>brek.username</FormLabel>
+                          <FormLabel mt={4}>Phone Number</FormLabel>
                             <InputGroup>
-                          <InputLeftAddon children="brek." opacity='0.7' />
-                            <Input name="phone" onChange={handleInput} value={user.phone} type="tel" placeholder="Phone Number" />
+                          <InputLeftAddon children="+91" opacity='0.7' />
+                            <Input name="phone" onChange={handleInput} value={user.phone} type="number" placeholder="Phone Number" />
                         </InputGroup>
                         <FormLabel mt={4}>E-Mail</FormLabel>
                           <Input name="email" type="email" onChange={handleInput} value={user.email} ref={initialRef} placeholder="E-Mail" />
@@ -186,13 +266,11 @@ const Home = () => {
                   <ModalCloseButton />
                 </ModalContent>
               </Modal>
+              <Image />
             </Flex>
           </HStack>
 
-
-
-
-          <Box className="sand" height="75vh">
+          <Box className="sand" width="100%" height="70vh">
             <VStack>
               <Text fontSize="40px" paddingTop="50px" color="#5A4012" fontWeight="700">
                 <h2 className="text1">we make free, custom</h2>
@@ -228,24 +306,24 @@ const Home = () => {
                 <ModalBody pb={6}>
                   <FormControl>
                     <FormLabel mt={4}>Full name</FormLabel>
-                    <Input name="FullName" type="text" value={user.FullName} placeholder="Your Name" />
+                    <Input name="FullName" type="text"  onChange={seter} value={travel.FullName} placeholder="Your Name" />
                     <FormLabel mt={4}>Phone Number</FormLabel>
                     <InputGroup>
                       <InputLeftAddon children="+91" opacity='0.7' />
-                      <Input name="phone" type="tel" placeholder="Phone Number" />
+                      <Input name="PhoneNumber" type="number" onChange={seter} placeholder="Phone Number" value={travel.PhoneNumber} />
                     </InputGroup>
                     <FormLabel mt={4}>E-Mail</FormLabel>
-                    <Input name="email" type="text"  placeholder="E-Mail" />
+                    <Input name="Email" type="text"  onChange={seter} placeholder="E-Mail" value={travel.Email}/>
                     <FormLabel mt={4}>Current Location</FormLabel>
-                    <Input name="currentLocation" type="text"  placeholder="Your City" />
+                    <Input name="CurrentLocation" type="text"  onChange={seter} value={travel.CurrentLocation} placeholder="Your City"/>
                     <FormLabel mt={4}>Travel Destinantion</FormLabel>
-                    <Input name="destinantion" type="text" ref={initialRef} placeholder="Travel To..." />
+                    <Input name="TravelDestination" type="text"  onChange={seter} value={travel.TravelDestination} ref={initialRef} placeholder="Travel To..." />
                     <FormLabel mt={4}>Travel Start</FormLabel>
-                    <DatePicker/>
+                    <DatePicker color="#000"/>
                   </FormControl>
                 </ModalBody>
                 <ModalFooter>
-                  <Button  type="submit" colorScheme="blue" mr={3}>Confirm Travel</Button>
+                  <Button onClick={PostTravelData} type="submit" colorScheme="blue" mr={3}>Confirm Travel</Button>
                   <Button onClick={onClose1}>Cancel</Button>
                 </ModalFooter>
               </ModalContent>
@@ -259,7 +337,7 @@ const Home = () => {
         <Box height="100px" color='white'/>
           {/* Page-2 */}
 
-          <Box className="secondSlide" width="100%" height="100vh">
+          <Box className="secondSlide" width="100%" height="120vh">
           </Box>
 
           {/* Page-3 */}

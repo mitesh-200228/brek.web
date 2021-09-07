@@ -6,10 +6,6 @@ const Data = new mongoose.Schema({
         type: String,
         required: true,
     },
-    username:{
-        type: String,
-        required: true,
-    },
     email: {
         type: String,
         required: true,
@@ -18,7 +14,6 @@ const Data = new mongoose.Schema({
     phone: {
         type: Number,
         min: 10,
-        // max: 11,
         unique: true,
         required: true,
     },

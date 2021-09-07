@@ -9,9 +9,9 @@ function SignInController(){
             return res.status(200).json({message:"Kem Party !!"});
         },
         async signUp(req,res){
-            const { FullName, username, email, phone,password,confirmPassword } = req.body;
+            const { FullName, email, phone,password,confirmPassword } = req.body;
 
-            if(!FullName || !username || !email || !phone || !password || !confirmPassword){
+            if(!FullName || !phone || !email || !password || !confirmPassword){
                 return res.json({message: "All fields are required"});
             }
 
@@ -26,7 +26,7 @@ function SignInController(){
                 const Password = crypto.createHmac('sha256', process.env.HASH_KEY).update(password).digest('hex');
                 console.log(Password);
                 const user = new Data({
-                    FullName,username,email,phone,password:Password,confirmPassword:Password
+                    FullName,email,phone,password:Password,confirmPassword:Password
                 });
     
                 user.save().then(() => {
