@@ -11,8 +11,9 @@ import SignInPage from './SignInPage';
 import Slide4 from '../images/slide4.svg';
 import {FcGoogle} from 'react-icons/fc';
 
+
 //Google Sign in/up
-import googleSignIn from './firebase'
+import {googleSignIn, username} from './firebase'
 
 const Home = () => {
 
