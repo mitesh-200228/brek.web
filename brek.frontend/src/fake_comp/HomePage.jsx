@@ -6,8 +6,8 @@ import '../styles/home.css';
 import { useHistory } from 'react-router-dom';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure } from "@chakra-ui/react"
 import { Tabs, TabList, Tab, TabPanel, TabPanels } from "@chakra-ui/react"
-import SignUpPage from './SignUpPage';
-import SignInPage from './SignInPage';
+import SignUpPage from '../components/SignUpPage';
+import SignInPage from '../components/SignInPage';
 import Slide4 from '../images/slide4.svg';
 
 const HomePage = () => {

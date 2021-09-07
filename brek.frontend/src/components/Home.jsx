@@ -320,6 +320,8 @@ const Home = () => {
                     <Input name="TravelDestination" type="text"  onChange={seter} value={travel.TravelDestination} ref={initialRef} placeholder="Travel To..." />
                     <FormLabel mt={4}>Travel Start</FormLabel>
                     <DatePicker color="#000"/>
+                    <FormLabel mt={4}>Travel End</FormLabel>
+                    <DatePicker color="#000"/>
                   </FormControl>
                 </ModalBody>
                 <ModalFooter>
