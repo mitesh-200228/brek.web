@@ -11,9 +11,9 @@
 .btn1{
     font-family: 'Rambla', sans-serif;
     font-weight: 650;
+    border: 2px solid #5a4012;
 }
 .btn1:hover {
-    border: 2px solid #5a4012;
 }
 .css-ssh14d{
     padding-right: 10px;
@@ -31,10 +31,14 @@
         letter-spacing: 1px;
     }
 }
-
+.text1{
+    font-size: 60px;
+}
 @media only screen and (max-width:544px){
     .lasttext{
         letter-spacing: 1px;
+        color: #fff;
+        font-size: 10px;
     }
 }
 
@@ -66,11 +70,22 @@
 .slide4{
     background: url('../images/slide4.svg');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
 }
 .react-calendar__navigation,.react-calendar__month-view__days,.react-calendar__navigation__label{
     color: #000;
 }
 .css-y02vo3{
     height: 0px;
+}
+@media only screen and (max-width:446px){
+    .lasttext{
+        color: #fff;
+        font-size: 10px;
+    }
+}
+@media only screen and (max-width:887px){
+    .pop{
+        
+    }
 }

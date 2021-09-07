@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import DatePicker from 'react-date-picker'
 import { ChakraProvider, HStack, Box, Flex, Spacer, Image, Button, VStack, Text, theme, FormControl, FormLabel, Input, InputGroup, InputRightElement, handleClick, InputLeftAddon, show } from '@chakra-ui/react';
 import logo from '../images/logo_vector.png';
 import '../styles/home.css';
 import { useHistory } from 'react-router-dom';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure } from "@chakra-ui/react"
-import {Tabs, TabList, Tab, TabPanel, TabPanels} from "@chakra-ui/react"
+import { Tabs, TabList, Tab, TabPanel, TabPanels } from "@chakra-ui/react"
 import SignUpPage from './SignUpPage';
 import SignInPage from './SignInPage';
 import Slide4 from '../images/slide4.svg';
@@ -46,7 +46,7 @@ const Home = () => {
       window.alert("Invalid Credentials");
     } else {
       window.alert("Login Successful");
-      history.push("/another");
+      history.push("/userdata");
     }
   }
 
@@ -61,7 +61,7 @@ const Home = () => {
   //--------------------------------------------------------------Signup System connection
 
   const [user, setUser] = React.useState({
-    FullName:"", email: "", phone: "", password: "", confirmPassword: ""
+    FullName: "", email: "", phone: "", password: "", confirmPassword: ""
   });
   let name, value;
 
@@ -106,27 +106,27 @@ const Home = () => {
   //----------------------------------------------------------------Travel Form Submission
   //----------------------------------------------------------------Travel Form Submission
 
-  const [travel,setTravel] = React.useState({
-    FullName:"",PhoneNumber:"",Email:"",CurrentLocation:"",TravelDestination:"",Date:""
+  const [travel, setTravel] = React.useState({
+    FullName: "", PhoneNumber: "", Email: "", CurrentLocation: "", TravelDestination: "", Date: ""
   });
 
   const seter = (e) => {
     value = e.target.value;
     name = e.target.name;
-    setTravel({...travel,[name]:value});
+    setTravel({ ...travel, [name]: value });
   }
 
   const PostTravelData = async (e) => {
     e.preventDefault();
-    const {FullName,PhoneNumber,Email,CurrentLocation,TravelDestination} = travel;
+    const { FullName, PhoneNumber, Email, CurrentLocation, TravelDestination } = travel;
 
-    const res = await fetch('userTravelData',{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
+    const res = await fetch('userTravelData', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       },
-      body:JSON.stringify({
-        FullName,PhoneNumber,Email,CurrentLocation,TravelDestination
+      body: JSON.stringify({
+        FullName, PhoneNumber, Email, CurrentLocation, TravelDestination
       })
     });
 
@@ -140,6 +140,7 @@ const Home = () => {
       history.push("/");
     }
   }
+  //----------------------------------------------------------------Getting User Data
 
   //----------------------------------------------------------------Chakra designing stuff
   //----------------------------------------------------------------Chakra designing stuff
@@ -272,15 +273,15 @@ const Home = () => {
 
           <Box className="sand" width="100%" height="70vh">
             <VStack>
-              <Text fontSize="40px" paddingTop="50px" color="#5A4012" fontWeight="700">
-                <h2 className="text1">we make free, custom</h2>
+              <Text fontSize="40px" color="#5A4012" fontWeight="700">
+                <Text className="text1">we make free, custom</Text>
               </Text>
               <Text fontSize="40px" color="#5A4012" fontWeight="700">
                 <h2 className="text1">itineraries for you</h2>
               </Text>
               <Text fontSize="15px" letterSpacing="3px" color="#5A4012" fontWeight="700" paddingBottom="20px"> <h2 clssName="text2">transparent. flexible. yours.</h2></Text>
-              
-              
+
+
               {/**Travel Now form here */}
               <Button
                 marginTop="2px"
@@ -336,7 +337,7 @@ const Home = () => {
             </VStack>
           </Box>
 
-        <Box height="100px" color='white'/>
+          <Box height="100px" color='white' />
           {/* Page-2 */}
 
           <Box className="secondSlide" width="100%" height="120vh">
@@ -347,13 +348,13 @@ const Home = () => {
           <Box width="100%" className="mountain" height="120vh">
             <Box width="100%">
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center" paddingTop="80px">
-                <Text color="#15233E" fontWeight="650" fontSize="60px">we take your brek</Text>
+                <Text color="#15233E" className="slide44" fontWeight="650" fontSize="60px">we take your brek</Text>
               </Flex>
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center">
                 <Text color="#15233E" fontWeight="650" fontSize="60px" mt="-5px">seriously.</Text>
               </Flex>
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center">
-                <Text color="#15233E" fontWeight="650" width="28vw" className="lasttext" fontSize="19px">we at brek.club understand how hectic and tiresome planning an entire trip can be. Therefore we decided to do it for you</Text>
+                <Text color="#15233E" fontWeight="650" width="42vw" className="lasttext" fontSize="19px">we at brek.club understand how hectic and tiresome planning an entire trip can be. Therefore we decided to do it for you</Text>
               </Flex>
             </Box>
           </Box>
@@ -361,7 +362,12 @@ const Home = () => {
           {/* Page-4 */}
 
           <Box className="slide4" width="100%" height="130vh">
-
+            <Flex>
+              <Text className="pop" paddingLeft="40px" paddingTop="50px" color="#15233E" width="30%" fontSize="55px" fontWeight="750">a team that cares</Text>
+            </Flex>
+            <Flex>
+              <Text className="pop" paddingLeft="40px" paddingTop="50px" color="#15233E" width="60%" fontSize="25px" fontWeight="750">we are a group of students presently pursuing our engineering from IIT Madras, who love travelling. We understand that everyone right now is mentally exhausted and this is our small way to spread joy and give you a brek you really deserve</Text>
+            </Flex>
           </Box>
 
           {/* Page-5 */}
