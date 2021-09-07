@@ -9,7 +9,10 @@ import { Tabs, TabList, Tab, TabPanel, TabPanels } from "@chakra-ui/react"
 import SignUpPage from './SignUpPage';
 import SignInPage from './SignInPage';
 import Slide4 from '../images/slide4.svg';
+import {FcGoogle} from 'react-icons/fc';
 
+//Google Sign in/up
+import googleSignIn from './firebase'
 
 const Home = () => {
 
@@ -195,65 +198,71 @@ const Home = () => {
                 <ModalOverlay />
                 <ModalContent >
                   <Box m={4}>
-                    <Tabs variant="soft-rounded">
-                      <ModalHeader><TabList ><Tab _selected={{ color: "white", bg: "blue.500" }}>Sign In</Tab><Tab _selected={{ color: "white", bg: "green.400" }}>Sign Up</Tab></TabList></ModalHeader>
+                <Tabs variant="soft-rounded">
+                  <ModalHeader><TabList ><Tab _selected={{ color: "white", bg: "blue.500" }}>Sign In</Tab><Tab _selected={{ color: "white", bg: "green.400" }}>Sign Up</Tab></TabList></ModalHeader>
+                  
+                  {/*Both Signup and Sign in inside one window*/}
+                  <TabPanels>
+                    <TabPanel>
+                      <ModalBody pb={6}>
+                        <FormControl>
+                          <FormLabel >E-Mail</FormLabel>
+                            <Input onChange={(e)=>{setEmail(e.target.value)}} value={email} type="email" ref={initialRef} placeholder="E-Mail" />
+                          <FormLabel mt={4}>Password</FormLabel>
+                            <Input value={password} onChange={(e)=>{setPassword(e.target.value)}} type="password" placeholder="Password" />
+                        </FormControl>
+                      </ModalBody>
+                      <ModalFooter>
+                      <HStack>
+                        <Button onClick={googleSignIn} colorScheme="cyan" leftIcon={<FcGoogle fontSize='20px'/>}>Google</Button>
+                        <Button type="submit" onClick={loginUser} colorScheme="blue" mr={3}>
+                          Sign In
+                        </Button>
+                        <Button onClick={onClose}>Cancel</Button>
+                      </HStack>
+                      </ModalFooter>
+                    </TabPanel>
 
-                      {/*Both Signup and Sign in inside one window*/}
-                      <TabPanels>
-                        <TabPanel>
-                          <ModalBody pb={6}>
-                            <FormControl>
-                              <FormLabel >E-Mail</FormLabel>
-                              <Input onChange={(e) => { setEmail(e.target.value) }} value={email} type="email" ref={initialRef} placeholder="E-Mail" />
-                              <FormLabel mt={4}>Password</FormLabel>
-                              <Input value={password} onChange={(e) => { setPassword(e.target.value) }} type="password" placeholder="Password" />
-                            </FormControl>
-                          </ModalBody>
-                          <ModalFooter>
-                            <Button type="submit" onClick={loginUser} colorScheme="blue" mr={3}>
-                              Sign In
-                            </Button>
-                            <Button onClick={onClose}>Cancel</Button>
-                          </ModalFooter>
-                        </TabPanel>
-
-                        <TabPanel>
-                          <ModalBody pb={6}>
-                            <FormControl>
-                              <FormLabel mt={4}>Full name</FormLabel>
-                              <Input name="FullName" type="text" onChange={handleInput} value={user.FullName} placeholder="Your Name" />
-                              <FormLabel mt={4}>Phone Number</FormLabel>
-                              <InputGroup>
-                                <InputLeftAddon children="+91" opacity='0.7' />
-                                <Input name="phone" onChange={handleInput} value={user.phone} type="number" placeholder="Phone Number" />
-                              </InputGroup>
-                              <FormLabel mt={4}>E-Mail</FormLabel>
-                              <Input name="email" type="email" onChange={handleInput} value={user.email} ref={initialRef} placeholder="E-Mail" />
-                              <FormLabel mt={4}>Password</FormLabel>
-                              <InputGroup size="md">
-                                <Input pr="4.5rem" type={show ? "text" : "password"} name="password" onChange={handleInput} value={user.password} placeholder="Enter password" />
-                                <InputRightElement width="4.5rem">
-                                  <Button h="1.75rem" size="sm" onClick={handleClickSignup}> {show ? "Hide" : "Show"}</Button>
-                                </InputRightElement>
-                              </InputGroup>
-                              <FormLabel mt={4}>Confirm Password</FormLabel>
-                              <InputGroup size="md">
-                                <Input pr="4.5rem" type={show1 ? "text" : "password"} placeholder="Confirm password" name="confirmPassword" onChange={handleInput} value={user.confirmPassword} />
-                                <InputRightElement width="4.5rem">
-                                  <Button h="1.75rem" size="sm" onClick={handleClickSignup1}> {show1 ? "Hide" : "Show"}</Button>
-                                </InputRightElement>
-                              </InputGroup>
-                            </FormControl>
-                          </ModalBody>
-
-                          <ModalFooter>
-                            <Button onClick={PostData} type="submit" colorScheme="green" mr={3}>Sign Up</Button>
-                            <Button onClick={onClose}>Cancel</Button>
-                          </ModalFooter>
-                        </TabPanel>
-                      </TabPanels>
-                    </Tabs>
-                    {/*Both signup signin ends */}
+                    <TabPanel>
+                      <ModalBody pb={6}>
+                        <FormControl>
+                          <FormLabel mt={4}>Full name</FormLabel>
+                            <Input name="FullName" type="text" onChange={handleInput} value={user.FullName} placeholder="Your Name" />
+                          <FormLabel mt={4}>Phone Number</FormLabel>
+                            <InputGroup>
+                          <InputLeftAddon children="+91" opacity='0.7' />
+                            <Input name="phone" onChange={handleInput} value={user.phone} type="number" placeholder="Phone Number" />
+                        </InputGroup>
+                        <FormLabel mt={4}>E-Mail</FormLabel>
+                          <Input name="email" type="email" onChange={handleInput} value={user.email} ref={initialRef} placeholder="E-Mail" />
+                          <FormLabel mt={4}>Password</FormLabel>
+                        <InputGroup size="md">
+                            <Input pr="4.5rem" type={show ? "text" : "password"} name="password" onChange={handleInput} value={user.password} placeholder="Enter password" />
+                            <InputRightElement width="4.5rem">
+                              <Button h="1.75rem" size="sm" onClick={handleClickSignup}> {show ? "Hide" : "Show"}</Button>
+                            </InputRightElement>
+                        </InputGroup>
+                          <FormLabel mt={4}>Confirm Password</FormLabel>
+                        <InputGroup size="md">
+                            <Input pr="4.5rem" type={show1 ? "text" : "password"} placeholder="Confirm password" name="confirmPassword" onChange={handleInput} value={user.confirmPassword} />
+                              <InputRightElement width="4.5rem">
+                                <Button h="1.75rem" size="sm" onClick={handleClickSignup1}> {show1 ? "Hide" : "Show"}</Button>
+                              </InputRightElement>
+                          </InputGroup>
+                        </FormControl>
+                      </ModalBody>
+                      
+                      <ModalFooter>
+                      <HStack>
+                        <Button onClick={googleSignIn} colorScheme="teal" leftIcon={<FcGoogle fontSize='20px'/>}>Google</Button>
+                        <Button onClick={PostData} type="submit" colorScheme="green" mr={3}>Sign Up</Button>
+                        <Button onClick={onClose}>Cancel</Button>
+                      </HStack>
+                      </ModalFooter>
+                    </TabPanel>
+                  </TabPanels>
+                  </Tabs>
+                  {/*Both signup signin ends */}
                   </Box>
                   <ModalCloseButton />
                 </ModalContent>
