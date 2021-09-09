@@ -13,9 +13,17 @@ import {FcGoogle} from 'react-icons/fc';
 
 
 //Google Sign in/up
-import googleSignIn from './firebase'
+import {googleSignIn, currUser} from './firebase'
+
 
 const Home = () => {
+
+  const [signInBtnTxt, setSignInBtnTxt] = React.useState("Sign In");
+  
+  if (currUser != null){
+    console.log("Cureenet user"+currUser)
+    setSignInBtnTxt(currUser);
+  }
 
   //--------------------------------------------------------------Signin System connection
   //--------------------------------------------------------------Signin System connection
@@ -189,7 +197,7 @@ const Home = () => {
             <Spacer />
             <Flex flexWrap="wrap" marginRight="20px">
               <Button className="btn1" color="#5A4012" border="none" borderRadius="50px" fontSize="17px" bg="transparent" height="50px" width="150px">Contact Us</Button>
-              <Button className="btn1" color="#5A4012" border="none" borderRadius="50px" fontSize="17px" bg="transparent" height="50px" width="150px" onClick={onOpen}>Sign In</Button>
+              <Button className="btn1" color="#5A4012" border="none" borderRadius="50px" fontSize="17px" bg="transparent" height="50px" width="150px" onClick={onOpen}>{signInBtnTxt}</Button>
               <Modal
                 initialFocusRef={initialRef}
                 finalFocusRef={finalRef}
