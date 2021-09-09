@@ -23,7 +23,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-
 const auth = getAuth();
 var currUser=null;
 // Google Sign In/Up Provider
@@ -39,9 +38,9 @@ function googleSignIn() {
     // The signed-in user info.
    
     // Todo: USE USER OBJECT TO ACESS DATA
-    // console.log(result);
-    return result.user.displayName;
-    
+    console.log(result);
+    console.log(result.user.displayName);
+    currUser = result.user.displayName;
     console.log((typeof(result.user)));
 
   }).catch((error) => {
@@ -58,4 +57,4 @@ function googleSignIn() {
 
 // TODO: facebook sign in 
 
-export default googleSignIn;
+export {googleSignIn, currUser};
