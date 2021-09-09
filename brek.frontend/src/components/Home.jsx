@@ -13,7 +13,7 @@ import {FcGoogle} from 'react-icons/fc';
 
 
 //Google Sign in/up
-import {googleSignIn, username} from './firebase'
+import googleSignIn from './firebase'
 
 const Home = () => {
 

@@ -37,11 +37,12 @@ function googleSignIn() {
     const token = credential.accessToken;
 
     // The signed-in user info.
-    username=result.user.displayName;
+   
     // Todo: USE USER OBJECT TO ACESS DATA
     console.log(result);
     console.log(result.user.displayName);
-    console.log(type(typeof(result.user)));
+    
+    console.log((typeof(result.user)));
 
   }).catch((error) => {
     // Handle Errors here.
@@ -57,5 +58,4 @@ function googleSignIn() {
 
 // TODO: facebook sign in 
 
-
-export default {googleSignIn, username};
+export default googleSignIn;
