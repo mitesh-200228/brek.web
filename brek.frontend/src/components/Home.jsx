@@ -11,9 +11,9 @@ import SignInPage from './SignInPage';
 import Slide4 from '../images/slide4.svg';
 import {FcGoogle} from 'react-icons/fc';
 
-
 //Google Sign in/up
 import googleSignIn from './firebase'
+import LargeWithNewsletter from './Navbar';
 
 const Home = () => {
 
@@ -371,12 +371,10 @@ const Home = () => {
             </Flex>
           </Box>
 
-          {/* Page-5 */}
 
-          <Box width="100%" height="30vh">
-
-          </Box>
-
+          {/* Footer */}
+          <LargeWithNewsletter/>
+          
         </Box>
       </Box>
     </ChakraProvider>

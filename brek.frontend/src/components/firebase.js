@@ -39,8 +39,8 @@ function googleSignIn() {
     // The signed-in user info.
    
     // Todo: USE USER OBJECT TO ACESS DATA
-    console.log(result);
-    console.log(result.user.displayName);
+    // console.log(result);
+    return result.user.displayName;
     
     console.log((typeof(result.user)));
 
