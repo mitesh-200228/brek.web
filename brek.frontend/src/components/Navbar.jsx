@@ -7,6 +7,7 @@ import {
     Stack,
     Text,
     VisuallyHidden,
+    Flex,
     Input,
     Spacer,
     IconButton,
@@ -20,7 +21,7 @@ import { sendSignInLinkToEmail } from '@firebase/auth';
 
 const Logo = (props: any) => {
     return (
-        <img src={logo} alt=""/>
+        <img src={logo} alt="" />
     );
 };
 const SocialButton = ({
@@ -34,13 +35,13 @@ const SocialButton = ({
 }) => {
     return (
         <chakra.button
-        bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
-        rounded={'full'}
-        w={8}
-        h={8}
-        cursor={'pointer'}
-        as={'a'}
-        href={href}
+            bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+            rounded={'full'}
+            w={8}
+            h={8}
+            cursor={'pointer'}
+            as={'a'}
+            href={href}
             display={'inline-flex'}
             alignItems={'center'}
             justifyContent={'center'}
@@ -63,83 +64,52 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 };
 
 export default function LargeWithNewsletter() {
-    const [emails,setEmail] = React.useState({
-        email:""
+    const [emails, setEmail] = React.useState({
+        email: ""
     });
     const handler = (e) => {
         setEmail(e.target.value);
     }
     const trigger = async (e) => {
-        const {email} = emails;
+        const { email } = emails;
         e.preventDefault();
-        const res = await fetch('/emailonly',{
-            method:'POST',
-            headers:{
+        const res = await fetch('/emailonly', {
+            method: 'POST',
+            headers: {
                 "Content-Type": "application/json"
             },
-            body:JSON.stringify({email})
+            body: JSON.stringify({ email })
         });
-        const res2 = res.json(); 
-        if(res.status !== 200){
-            return; 
+        const res2 = res.json();
+        if (res.status !== 200) {
+            return;
         }
         console.log(res2);
     }
     return (
-        <Box
-            bg={useColorModeValue('gray.50', 'gray.900')}
-            color={useColorModeValue('gray.700', 'gray.200')}>
-            <Container as={Stack} maxW={'6xl'} py={10}>
-                <SimpleGrid
-                    templateColumns={{ sm: '1fr 1fr', md: '2fr 1fr 1fr 2fr' }}
-                    spacing={8}>
-                    <Stack spacing={6}>
-                        <Box>
-                            {/* <Logo color={useColorModeValue('gray.700', 'white')} /> */}
-                        </Box>
-                        <Text fontSize={'sm'}>
-                            © 2021 brek.club  . All rights reserved
-                        </Text>
-                        <Stack paddingLeft="10%" direction={'row'} spacing={6}>
-                            <SocialButton label={'YouTube'} href={'https://www.linkedin.com/company/75043346/admin/'}>
-                                <FaLinkedin />
-                            </SocialButton>
-                            <SocialButton label={'Instagram'} href={'https://www.instagram.com/brek.club/'}>
-                                <FaInstagram />
-                            </SocialButton>
-                        </Stack>
-                    </Stack>
+        <Flex width="100%" height="35vh" justifyContent="center">
+            <Stack spacing={6}>
+                <Box>
+                    {/* <Logo color={useColorModeValue('gray.700', 'white')} /> */}
+                </Box>
+                <Text fontSize={'sm'}>
+                    © 2021 brek.club  . All rights reserved
+                </Text>
+                <Flex justifyContent="center" paddingLeft="10%" direction={'row'} spacing={6}>
+                    <SocialButton label={'YouTube'} href={'https://www.linkedin.com/company/75043346/admin/'}>
+                        <FaLinkedin />
+                    </SocialButton>
                     <Spacer/>
+                    <SocialButton label={'YouTube'} href={'https://www.linkedin.com/company/75043346/admin/'}>
+                        <FaTwitter />
+                    </SocialButton>
                     <Spacer/>
-                    <Stack align={'flex-start'}>
-                        <ListHeader>Stay up to date</ListHeader>
-                        <Stack direction={'row'}>
-                            <Input
-                                type="text"
-                                name="email"
-                                value={emails.email}
-                                onChange={handler}
-                                placeholder={'Your email address'}
-                                bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
-                                border={0}
-                                _focus={{
-                                    bg: 'whiteAlpha.300',
-                                }}
-                            />
-                            <IconButton
-                                onClick={trigger}
-                                bg={useColorModeValue('green.400', 'green.800')}
-                                color={useColorModeValue('white', 'gray.800')}
-                                _hover={{
-                                    bg: 'green.600',
-                                }}
-                                aria-label="Subscribe"
-                                icon={<BiMailSend />}
-                            />
-                        </Stack>
-                    </Stack>
-                </SimpleGrid>
-            </Container>
-        </Box>
+
+                    <SocialButton label={'Instagram'} href={'https://www.instagram.com/brek.club/'}>
+                        <FaInstagram />
+                    </SocialButton>
+                </Flex>
+            </Stack>
+        </Flex>
     );
 }

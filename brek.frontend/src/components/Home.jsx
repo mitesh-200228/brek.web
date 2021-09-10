@@ -12,34 +12,34 @@ import { googleSignIn, currUser } from './firebase'
 import LargeWithNewsletter from './Navbar';
 import axios from 'axios';
 const Home = () => {
-  
+
   const [signInBtnTxt, setSignInBtnTxt] = React.useState("");
   console.log(currUser)
   console.log(signInBtnTxt);
-  React.useEffect(()=>{
+  React.useEffect(() => {
     dataOfUser();
     // setSignInBtnTxt(currUser);
-  },[]);
+  }, []);
   let data;
-  const dataOfUser = async() => {
-    try{
-      const res = await fetch("/userdata",{
-        method:'GET',
-        headers:{
-          'Content-Type':'application/json'
+  const dataOfUser = async () => {
+    try {
+      const res = await fetch("/userdata", {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
         },
-        credentials:"include",
+        credentials: "include",
       });
-  
+
       data = await res.json();
       // console.log(data.gota.FullName);
       setSignInBtnTxt(data.gota.FullName);
 
-      if(res.status !== 200){
+      if (res.status !== 200) {
         const error = new Error(res.error);
         console.log(error);
       }
-    }catch(err){
+    } catch (err) {
       console.log(err);
     };
 
@@ -300,7 +300,7 @@ const Home = () => {
             </Flex>
           </HStack>
 
-          <Box className="sand" width="100%" height="85vh">
+          <Box className="sand" width="100%" height="73vh">
             <VStack>
               <Box textAlign="center" className="mainText">
                 <Text className="text1">we make free, custom</Text>
@@ -368,6 +368,29 @@ const Home = () => {
           {/* Page-2 */}
 
           <Box className="secondSlide" width="100%" height="120vh">
+            <Box justifyContent="center" paddingTop="50px" width="100%">
+              <VStack>
+                <Flex justifyContent="flex-end" width="100%" paddingRight="20px">
+                  <Box width="300px" height="100px" className="cloud" borderRadius="80%">
+                    <Text textAlign="center" color="#15233E" paddingLeft="20px" paddingRight="20px" width="100%" paddingTop="20px" fontWeight="650" letterSpacing="1px" className="slide2txt">this place is nothing like what's shown on the web </Text>
+                  </Box>
+                </Flex>
+                <Spacer />
+
+                <Flex justifyContent="flex-start" width="100%" paddingLeft="20px">
+                  <Box width="300px" height="100px" className="cloud" borderRadius="80%">
+                    <Text textAlign="center" color="#15233E" paddingLeft="20px" paddingRight="20px" width="100%" paddingTop="20px" fontWeight="650" letterSpacing="1px" className="slide2txt">this place is nothing like what's shown on the web </Text>
+                  </Box>
+                </Flex>
+                <Spacer />
+
+                <Flex justifyContent="flex-end" width="100%" paddingRight="20px">
+                  <Box width="300px" height="100px" className="cloud" borderRadius="80%">
+                    <Text textAlign="center" color="#15233E" paddingLeft="20px" paddingRight="20px" width="100%" paddingTop="20px" fontWeight="650" letterSpacing="1px" className="slide2txt">this place is nothing like what's shown on the web </Text>
+                  </Box>
+                </Flex>
+              </VStack>
+            </Box>
           </Box>
 
           {/* Page-3 */}
@@ -390,7 +413,7 @@ const Home = () => {
 
           <Box className="slide4" width="100%" height="130vh">
             <Flex>
-              <Text className="pop1" paddingLeft="40px" paddingTop="50px" color="#15233E" width="100%" fontWeight="750">a team that <br/>cares</Text>
+              <Text className="pop1" paddingLeft="40px" paddingTop="50px" color="#15233E" width="100%" fontWeight="750">a team that <br />cares</Text>
             </Flex>
             <Flex>
               <Text className="pop2" paddingLeft="40px" paddingTop="50px" color="#15233E" fontWeight="750">we are a group of students presently pursuing our engineering from IIT Madras, who love travelling. We understand that everyone right now is mentally exhausted and this is our small way to spread joy and give you a brek you really deserve</Text>

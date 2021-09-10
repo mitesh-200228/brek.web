@@ -25,16 +25,32 @@
     font-weight: 650;
     color: #5a4012;
 }
+.slide2txt{
+    font-size: 20px;
+}
+.cloud{
+    background: linear-gradient(to right,rgba(225, 230, 235, 0.4),rgba(225, 230, 235, 0.4));
+}
 .sand {
     position: relative;
     /* top: 100px; */
     background: url("../images/sand.svg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position-y: -17px;
 }
 .mainText{
-    padding-top: 105px;
+    padding-top: 25px;
+}
+.secondSlide {
+    background: url("../images/slide2.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 110%;
+}
+@media only screen and (max-width:670px){
+    .secondSlide{
+        background-position-x: -500px;
+    }
 }
 @media only screen and (max-width: 541px) {
     .text1 {
@@ -87,12 +103,6 @@
     .mountain{
         background-position-x: -30px;
     }
-}
-.secondSlide {
-    background: url("../images/slide2.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 110%;
 }
 .slide4 {
     background: url("../images/slide4.svg");
