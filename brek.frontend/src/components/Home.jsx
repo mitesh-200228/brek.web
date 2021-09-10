@@ -9,7 +9,7 @@ import { Tabs, TabList, Tab, TabPanel, TabPanels } from "@chakra-ui/react"
 import { FcGoogle } from 'react-icons/fc';
 //Google Sign in/up
 import { googleSignIn, currUser } from './firebase'
-import LargeWithNewsletter from './Navbar';
+import LargeWithNewsletter from './Footer';
 import axios from 'axios';
 const Home = () => {
 
@@ -217,7 +217,7 @@ const Home = () => {
             <Spacer />
             <Flex flexWrap="wrap" marginRight="20px">
               <Button className="btn1" color="#5A4012" border="none" borderRadius="50px" fontSize="17px" bg="transparent" height="50px" width="150px">Contact Us</Button>
-              {signInBtnTxt || currUser ? <Text paddingTop="13px" color="#5a4012" fontWeight="650">{signInBtnTxt ? signInBtnTxt : currUser}</Text> : <Button className="btn1" color="#5A4012" border="none" borderRadius="50px" fontSize="17px" bg="transparent" height="50px" width="150px" onClick={onOpen}>Sign In</Button>}
+              {signInBtnTxt || currUser ? <Text paddingTop="13px" paddingRight="20px" color="#5a4012" fontWeight="650">{signInBtnTxt ? signInBtnTxt : currUser}</Text> : <Button className="btn1" color="#5A4012" border="none" borderRadius="50px" fontSize="17px" bg="transparent" height="50px" width="150px" onClick={onOpen}>Sign In</Button>}
               <Modal
                 initialFocusRef={initialRef}
                 finalFocusRef={finalRef}
