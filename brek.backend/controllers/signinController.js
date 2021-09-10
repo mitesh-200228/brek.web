@@ -5,6 +5,9 @@ const crypto = require('crypto');
 
 function SignInController(){
     return{
+        Home(req,res){
+            return res.status(200).send("Hello Guys!!");
+        },
         singIn(req, res){
             return res.status(200).json({message:"Kem Party !!"});
         },

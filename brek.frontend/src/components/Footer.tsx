@@ -87,7 +87,7 @@ export default function LargeWithNewsletter() {
         console.log(res2);
     }
     return (
-        <Flex width="100%" height="35vh" justifyContent="center">
+        <Flex width="100%" height="35vh" justifyContent="center" bg="#3A4A4E" color="#fff">
             <Stack spacing={6}>
                 <Box>
                     {/* <Logo color={useColorModeValue('gray.700', 'white')} /> */}
@@ -108,6 +108,9 @@ export default function LargeWithNewsletter() {
                     <SocialButton label={'Instagram'} href={'https://www.instagram.com/brek.club/'}>
                         <FaInstagram />
                     </SocialButton>
+                </Flex>
+                <Flex justifyContent="center">
+                    <Text color="#fff">Mail us : <a href = "mailto:reach@brek.club">reach@brek.club</a></Text>
                 </Flex>
             </Stack>
         </Flex>

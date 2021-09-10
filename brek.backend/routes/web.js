@@ -6,6 +6,7 @@ const TravelController = require("../controllers/travelContoller");
 
 const initRoute = (app) => {
     
+    app.get('/',SignInController().Home);
     app.get('/another',authenticate, SignInController().singIn);
     app.post('/signup', SignInController().signUp);
     app.post('/signin', SignInController().PostsignIn);

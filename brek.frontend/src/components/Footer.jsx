@@ -1,29 +1,16 @@
 import {
     Box,
     chakra,
-    Container,
-    Link,
-    SimpleGrid,
     Stack,
     Text,
     VisuallyHidden,
     Flex,
-    Input,
     Spacer,
-    IconButton,
     useColorModeValue,
 } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
-import { FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa';
-import { BiMailSend } from 'react-icons/bi';
-import logo from '../images/logo_vector.png';
-import { sendSignInLinkToEmail } from '@firebase/auth';
+import { FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
-const Logo = (props: any) => {
-    return (
-        <img src={logo} alt="" />
-    );
-};
 const SocialButton = ({
     children,
     label,
@@ -55,37 +42,30 @@ const SocialButton = ({
     );
 };
 
-const ListHeader = ({ children }: { children: ReactNode }) => {
-    return (
-        <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
-            {children}
-        </Text>
-    );
-};
 
 export default function LargeWithNewsletter() {
-    const [emails, setEmail] = React.useState({
-        email: ""
-    });
-    const handler = (e) => {
-        setEmail(e.target.value);
-    }
-    const trigger = async (e) => {
-        const { email } = emails;
-        e.preventDefault();
-        const res = await fetch('/emailonly', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email })
-        });
-        const res2 = res.json();
-        if (res.status !== 200) {
-            return;
-        }
-        console.log(res2);
-    }
+    // const [emails, setEmail] = React.useState({
+    //     email: ""
+    // });
+    // const handler = (e) => {
+    //     setEmail(e.target.value);
+    // }
+    // const trigger = async (e) => {
+    //     const { email } = emails;
+    //     e.preventDefault();
+    //     const res = await fetch('/emailonly', {
+    //         method: 'POST',
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify({ email })
+    //     });
+    //     const res2 = res.json();
+    //     if (res.status !== 200) {
+    //         return;
+    //     }
+    //     console.log(res2);
+    // }
     return (
         <Flex width="100%" height="35vh" justifyContent="center">
             <Stack spacing={6}>
@@ -99,16 +79,17 @@ export default function LargeWithNewsletter() {
                     <SocialButton label={'YouTube'} href={'https://www.linkedin.com/company/75043346/admin/'}>
                         <FaLinkedin />
                     </SocialButton>
-                    <Spacer/>
+                    <Spacer />
                     <SocialButton label={'YouTube'} href={'https://www.linkedin.com/company/75043346/admin/'}>
                         <FaTwitter />
                     </SocialButton>
-                    <Spacer/>
+                    <Spacer />
 
                     <SocialButton label={'Instagram'} href={'https://www.instagram.com/brek.club/'}>
                         <FaInstagram />
                     </SocialButton>
                 </Flex>
+
             </Stack>
         </Flex>
     );
