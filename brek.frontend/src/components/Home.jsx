@@ -375,13 +375,13 @@ const Home = () => {
           <Box width="100%" className="mountain" height="120vh">
             <Box width="100%">
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center" paddingTop="80px">
-                <Text color="#15233E" className="slide44" fontWeight="650" fontSize="60px">we take your brek</Text>
+                <Text color="#15233E" className="slide44" fontWeight="650">we take your brek</Text>
               </Flex>
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center">
-                <Text color="#15233E" fontWeight="650" fontSize="60px" mt="-5px">seriously.</Text>
+                <Text color="#15233E" className="slide44" fontWeight="650" mt="-5px">seriously.</Text>
               </Flex>
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center">
-                <Text color="#15233E" fontWeight="650" width="42vw" className="lasttext" fontSize="19px">we at brek.club understand how hectic and tiresome planning an entire trip can be. Therefore we decided to do it for you</Text>
+                <Text color="#15233E" fontWeight="650" width="42vw" className="lasttext">we at brek.club understand how hectic and tiresome planning an entire trip can be. Therefore we decided to do it for you</Text>
               </Flex>
             </Box>
           </Box>
@@ -390,10 +390,10 @@ const Home = () => {
 
           <Box className="slide4" width="100%" height="130vh">
             <Flex>
-              <Text className="pop" paddingLeft="40px" paddingTop="50px" color="#15233E" width="30%" fontSize="55px" fontWeight="750">a team that cares</Text>
+              <Text className="pop1" paddingLeft="40px" paddingTop="50px" color="#15233E" width="100%" fontWeight="750">a team that <br/>cares</Text>
             </Flex>
             <Flex>
-              <Text className="pop" paddingLeft="40px" paddingTop="50px" color="#15233E" width="60%" fontSize="25px" fontWeight="750">we are a group of students presently pursuing our engineering from IIT Madras, who love travelling. We understand that everyone right now is mentally exhausted and this is our small way to spread joy and give you a brek you really deserve</Text>
+              <Text className="pop2" paddingLeft="40px" paddingTop="50px" color="#15233E" fontWeight="750">we are a group of students presently pursuing our engineering from IIT Madras, who love travelling. We understand that everyone right now is mentally exhausted and this is our small way to spread joy and give you a brek you really deserve</Text>
             </Flex>
           </Box>
 

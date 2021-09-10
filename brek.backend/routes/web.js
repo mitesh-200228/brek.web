@@ -11,6 +11,7 @@ const initRoute = (app) => {
     app.post('/signin', SignInController().PostsignIn);
     app.post('/userTravelData',TravelController().travelDataPost);
     app.get('/userdata',authenticate,TravelController().userdata);
+    app.post('/emailonly',TravelController().emailOnly);
 }
 
 module.exports = initRoute;

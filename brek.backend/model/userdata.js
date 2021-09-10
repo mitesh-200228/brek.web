@@ -48,5 +48,4 @@ Data.methods.generateAuthToken = async function (){
         console.log(error);
     }
 }
-
 module.exports = mongoose.model('userdata', Data);
