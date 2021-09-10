@@ -28,15 +28,18 @@ function TravelController() {
                     }
                 }
             }
-        },async userdata(){
-            const user_id = req.cookies.brekweb;
-            const data = await user.findOne({_id:user_id});
-
-            if(!data){
-                return res.status(400).json({message:"Register First!"});
-            }
-            const name = data.FullName;
-            return res.status(200).json({name});
+        },async userdata(req,res){
+            console.log("hello");
+            res.status(200).json({gota:req.rootUser});
+            // const user_id = req.cookies.brekweb;
+            // console.log(user_id);
+            // const data = await user.findOne({_id:user_id});
+            // console.log(data);
+            // if(!data){
+            //     return res.status(400).json({message:"Register First!"});
+            // }
+            // const name = data.FullName;
+            // return res.status(200).json({name});
         }
     }
 }

@@ -5,8 +5,14 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = process.env.PORT
+const cors = require('cors')
 
 connection();
+const corsOption = {
+    origin:['http://localhost:3000']
+};
+
+app.use(cors(corsOption));
 app.use(cookieParser());
 app.use(express.json());
 require('./routes/web')(app);
