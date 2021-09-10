@@ -31,6 +31,10 @@
 .cloud{
     background: linear-gradient(to right,rgba(225, 230, 235, 0.4),rgba(225, 230, 235, 0.4));
 }
+.thirdBox{
+    position: relative;
+    top: -20px;
+}
 .sand {
     position: relative;
     /* top: 100px; */
@@ -65,8 +69,8 @@
         background-position-x: -50px;
     }
     .mainText{
-        padding-top: 65px;
-        padding-left: 50px;
+        padding-top: 115px;
+        padding-left: 00px;
     }
 }
 @media only screen and (max-width: 544px) {

@@ -370,23 +370,23 @@ const Home = () => {
           <Box className="secondSlide" width="100%" height="120vh">
             <Box justifyContent="center" paddingTop="50px" width="100%">
               <VStack>
-                <Flex justifyContent="flex-end" width="100%" paddingRight="20px">
+                <Flex justifyContent="flex-end" width="100%" paddingRight="17%">
                   <Box width="300px" height="100px" className="cloud" borderRadius="80%">
                     <Text textAlign="center" color="#15233E" paddingLeft="20px" paddingRight="20px" width="100%" paddingTop="20px" fontWeight="650" letterSpacing="1px" className="slide2txt">this place is nothing like what's shown on the web </Text>
                   </Box>
                 </Flex>
                 <Spacer />
 
-                <Flex justifyContent="flex-start" width="100%" paddingLeft="20px">
-                  <Box width="300px" height="100px" className="cloud" borderRadius="80%">
-                    <Text textAlign="center" color="#15233E" paddingLeft="20px" paddingRight="20px" width="100%" paddingTop="20px" fontWeight="650" letterSpacing="1px" className="slide2txt">this place is nothing like what's shown on the web </Text>
+                <Flex justifyContent="flex-start" width="100%" paddingLeft="17%">
+                  <Box width="300px" height="120px" className="cloud" borderRadius="80%">
+                    <Text textAlign="center" color="#15233E" paddingLeft="20px" paddingRight="20px" width="100%" paddingTop="20px" fontWeight="650" letterSpacing="1px" className="slide2txt">bro, that guy charged us extra just because we are tourist</Text>
                   </Box>
                 </Flex>
                 <Spacer />
 
-                <Flex justifyContent="flex-end" width="100%" paddingRight="20px">
+                <Flex justifyContent="flex-end" width="100%" paddingRight="17%" className="thirdBox">
                   <Box width="300px" height="100px" className="cloud" borderRadius="80%">
-                    <Text textAlign="center" color="#15233E" paddingLeft="20px" paddingRight="20px" width="100%" paddingTop="20px" fontWeight="650" letterSpacing="1px" className="slide2txt">this place is nothing like what's shown on the web </Text>
+                    <Text textAlign="center" color="#15233E" paddingLeft="20px" paddingRight="20px" width="100%" paddingTop="20px" fontWeight="650" letterSpacing="1px" className="slide2txt">yaar if we knew this place before hand we could have enjoyed more! </Text>
                   </Box>
                 </Flex>
               </VStack>
