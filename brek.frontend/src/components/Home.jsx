@@ -1,27 +1,48 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import DatePicker from 'react-date-picker'
-import { ChakraProvider, HStack, Box, Flex, Spacer, Image, Button, VStack, Text, theme, FormControl, FormLabel, Input, InputGroup, InputRightElement, handleClick, InputLeftAddon, show } from '@chakra-ui/react';
+import { ChakraProvider, HStack, Box, Flex, Spacer, Image, Button, VStack, Text, FormControl, FormLabel, Input, InputGroup, InputRightElement, InputLeftAddon } from '@chakra-ui/react';
 import logo from '../images/logo_vector.png';
 import '../styles/home.css';
 import { useHistory } from 'react-router-dom';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure } from "@chakra-ui/react"
 import { Tabs, TabList, Tab, TabPanel, TabPanels } from "@chakra-ui/react"
-import SignUpPage from './SignUpPage';
-import SignInPage from './SignInPage';
-import Slide4 from '../images/slide4.svg';
-import {FcGoogle} from 'react-icons/fc';
-
+import { FcGoogle } from 'react-icons/fc';
 //Google Sign in/up
-import {googleSignIn, currUser} from './firebase'
-
-
+import { googleSignIn, currUser } from './firebase'
+import LargeWithNewsletter from './Navbar';
+import axios from 'axios';
 const Home = () => {
-
-  const [signInBtnTxt, setSignInBtnTxt] = React.useState("Sign In");
   
-  if (currUser != null){
-    console.log("Cureenet user"+currUser)
-    setSignInBtnTxt(currUser);
+  const [signInBtnTxt, setSignInBtnTxt] = React.useState("");
+  console.log(currUser)
+  console.log(signInBtnTxt);
+  React.useEffect(()=>{
+    dataOfUser();
+    // setSignInBtnTxt(currUser);
+  },[]);
+  let data;
+  const dataOfUser = async() => {
+    try{
+      const res = await fetch("/userdata",{
+        method:'GET',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        credentials:"include",
+      });
+  
+      data = await res.json();
+      // console.log(data.gota.FullName);
+      setSignInBtnTxt(data.gota.FullName);
+
+      if(res.status !== 200){
+        const error = new Error(res.error);
+        console.log(error);
+      }
+    }catch(err){
+      console.log(err);
+    };
+
   }
 
   //--------------------------------------------------------------Signin System connection
@@ -163,7 +184,7 @@ const Home = () => {
 
   const initialRef = React.useRef();
   const finalRef = React.useRef();
-  const { isOpen: isOpen, onOpen: onOpen, onClose: onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef1 = React.useRef();
   const finalRef1 = React.useRef();
@@ -196,7 +217,7 @@ const Home = () => {
             <Spacer />
             <Flex flexWrap="wrap" marginRight="20px">
               <Button className="btn1" color="#5A4012" border="none" borderRadius="50px" fontSize="17px" bg="transparent" height="50px" width="150px">Contact Us</Button>
-              <Button className="btn1" color="#5A4012" border="none" borderRadius="50px" fontSize="17px" bg="transparent" height="50px" width="150px" onClick={onOpen}>{signInBtnTxt}</Button>
+              {signInBtnTxt || currUser ? <Text paddingTop="13px" color="#5a4012" fontWeight="650">{signInBtnTxt ? signInBtnTxt : currUser}</Text> : <Button className="btn1" color="#5A4012" border="none" borderRadius="50px" fontSize="17px" bg="transparent" height="50px" width="150px" onClick={onOpen}>Sign In</Button>}
               <Modal
                 initialFocusRef={initialRef}
                 finalFocusRef={finalRef}
@@ -206,71 +227,71 @@ const Home = () => {
                 <ModalOverlay />
                 <ModalContent >
                   <Box m={4}>
-                <Tabs variant="soft-rounded">
-                  <ModalHeader><TabList ><Tab _selected={{ color: "white", bg: "blue.500" }}>Sign In</Tab><Tab _selected={{ color: "white", bg: "green.400" }}>Sign Up</Tab></TabList></ModalHeader>
-                  
-                  {/*Both Signup and Sign in inside one window*/}
-                  <TabPanels>
-                    <TabPanel>
-                      <ModalBody pb={6}>
-                        <FormControl>
-                          <FormLabel >E-Mail</FormLabel>
-                            <Input onChange={(e)=>{setEmail(e.target.value)}} value={email} type="email" ref={initialRef} placeholder="E-Mail" />
-                          <FormLabel mt={4}>Password</FormLabel>
-                            <Input value={password} onChange={(e)=>{setPassword(e.target.value)}} type="password" placeholder="Password" />
-                        </FormControl>
-                      </ModalBody>
-                      <ModalFooter>
-                      <HStack>
-                        <Button onClick={googleSignIn} colorScheme="cyan" leftIcon={<FcGoogle fontSize='20px'/>}>Google</Button>
-                        <Button type="submit" onClick={loginUser} colorScheme="blue" mr={3}>
-                          Sign In
-                        </Button>
-                        <Button onClick={onClose}>Cancel</Button>
-                      </HStack>
-                      </ModalFooter>
-                    </TabPanel>
+                    <Tabs variant="soft-rounded">
+                      <ModalHeader><TabList ><Tab _selected={{ color: "white", bg: "blue.500" }}>Sign In</Tab><Tab _selected={{ color: "white", bg: "green.400" }}>Sign Up</Tab></TabList></ModalHeader>
 
-                    <TabPanel>
-                      <ModalBody pb={6}>
-                        <FormControl>
-                          <FormLabel mt={4}>Full name</FormLabel>
-                            <Input name="FullName" type="text" onChange={handleInput} value={user.FullName} placeholder="Your Name" />
-                          <FormLabel mt={4}>Phone Number</FormLabel>
-                            <InputGroup>
-                          <InputLeftAddon children="+91" opacity='0.7' />
-                            <Input name="phone" onChange={handleInput} value={user.phone} type="number" placeholder="Phone Number" />
-                        </InputGroup>
-                        <FormLabel mt={4}>E-Mail</FormLabel>
-                          <Input name="email" type="email" onChange={handleInput} value={user.email} ref={initialRef} placeholder="E-Mail" />
-                          <FormLabel mt={4}>Password</FormLabel>
-                        <InputGroup size="md">
-                            <Input pr="4.5rem" type={show ? "text" : "password"} name="password" onChange={handleInput} value={user.password} placeholder="Enter password" />
-                            <InputRightElement width="4.5rem">
-                              <Button h="1.75rem" size="sm" onClick={handleClickSignup}> {show ? "Hide" : "Show"}</Button>
-                            </InputRightElement>
-                        </InputGroup>
-                          <FormLabel mt={4}>Confirm Password</FormLabel>
-                        <InputGroup size="md">
-                            <Input pr="4.5rem" type={show1 ? "text" : "password"} placeholder="Confirm password" name="confirmPassword" onChange={handleInput} value={user.confirmPassword} />
-                              <InputRightElement width="4.5rem">
-                                <Button h="1.75rem" size="sm" onClick={handleClickSignup1}> {show1 ? "Hide" : "Show"}</Button>
-                              </InputRightElement>
-                          </InputGroup>
-                        </FormControl>
-                      </ModalBody>
-                      
-                      <ModalFooter>
-                      <HStack>
-                        <Button onClick={googleSignIn} colorScheme="teal" leftIcon={<FcGoogle fontSize='20px'/>}>Google</Button>
-                        <Button onClick={PostData} type="submit" colorScheme="green" mr={3}>Sign Up</Button>
-                        <Button onClick={onClose}>Cancel</Button>
-                      </HStack>
-                      </ModalFooter>
-                    </TabPanel>
-                  </TabPanels>
-                  </Tabs>
-                  {/*Both signup signin ends */}
+                      {/*Both Signup and Sign in inside one window*/}
+                      <TabPanels>
+                        <TabPanel>
+                          <ModalBody pb={6}>
+                            <FormControl>
+                              <FormLabel >E-Mail</FormLabel>
+                              <Input onChange={(e) => { setEmail(e.target.value) }} value={email} type="email" ref={initialRef} placeholder="E-Mail" />
+                              <FormLabel mt={4}>Password</FormLabel>
+                              <Input value={password} onChange={(e) => { setPassword(e.target.value) }} type="password" placeholder="Password" />
+                            </FormControl>
+                          </ModalBody>
+                          <ModalFooter>
+                            <HStack>
+                              <Button onClick={googleSignIn} colorScheme="cyan" leftIcon={<FcGoogle fontSize='20px' />}>Google</Button>
+                              <Button type="submit" onClick={loginUser} colorScheme="blue" mr={3}>
+                                Sign In
+                              </Button>
+                              <Button onClick={onClose}>Cancel</Button>
+                            </HStack>
+                          </ModalFooter>
+                        </TabPanel>
+
+                        <TabPanel>
+                          <ModalBody pb={6}>
+                            <FormControl>
+                              <FormLabel mt={4}>Full name</FormLabel>
+                              <Input name="FullName" type="text" onChange={handleInput} value={user.FullName} placeholder="Your Name" />
+                              <FormLabel mt={4}>Phone Number</FormLabel>
+                              <InputGroup>
+                                <InputLeftAddon children="+91" opacity='0.7' />
+                                <Input name="phone" onChange={handleInput} value={user.phone} type="number" placeholder="Phone Number" />
+                              </InputGroup>
+                              <FormLabel mt={4}>E-Mail</FormLabel>
+                              <Input name="email" type="email" onChange={handleInput} value={user.email} ref={initialRef} placeholder="E-Mail" />
+                              <FormLabel mt={4}>Password</FormLabel>
+                              <InputGroup size="md">
+                                <Input pr="4.5rem" type={show ? "text" : "password"} name="password" onChange={handleInput} value={user.password} placeholder="Enter password" />
+                                <InputRightElement width="4.5rem">
+                                  <Button h="1.75rem" size="sm" onClick={handleClickSignup}> {show ? "Hide" : "Show"}</Button>
+                                </InputRightElement>
+                              </InputGroup>
+                              <FormLabel mt={4}>Confirm Password</FormLabel>
+                              <InputGroup size="md">
+                                <Input pr="4.5rem" type={show1 ? "text" : "password"} placeholder="Confirm password" name="confirmPassword" onChange={handleInput} value={user.confirmPassword} />
+                                <InputRightElement width="4.5rem">
+                                  <Button h="1.75rem" size="sm" onClick={handleClickSignup1}> {show1 ? "Hide" : "Show"}</Button>
+                                </InputRightElement>
+                              </InputGroup>
+                            </FormControl>
+                          </ModalBody>
+
+                          <ModalFooter>
+                            <HStack>
+                              <Button onClick={googleSignIn} colorScheme="teal" leftIcon={<FcGoogle fontSize='20px' />}>Google</Button>
+                              <Button onClick={PostData} type="submit" colorScheme="green" mr={3}>Sign Up</Button>
+                              <Button onClick={onClose}>Cancel</Button>
+                            </HStack>
+                          </ModalFooter>
+                        </TabPanel>
+                      </TabPanels>
+                    </Tabs>
+                    {/*Both signup signin ends */}
                   </Box>
                   <ModalCloseButton />
                 </ModalContent>
@@ -279,17 +300,15 @@ const Home = () => {
             </Flex>
           </HStack>
 
-          <Box className="sand" width="100%" height="70vh">
+          <Box className="sand" width="100%" height="85vh">
             <VStack>
-              <Text fontSize="40px" color="#5A4012" fontWeight="700">
+              <Box textAlign="center" className="mainText">
                 <Text className="text1">we make free, custom</Text>
-              </Text>
-              <Text fontSize="40px" color="#5A4012" fontWeight="700">
-                <h2 className="text1">itineraries for you</h2>
-              </Text>
-              <Text fontSize="15px" letterSpacing="3px" color="#5A4012" fontWeight="700" paddingBottom="20px"> <h2 clssName="text2">transparent. flexible. yours.</h2></Text>
+                <Text className="text1">itineraries for you</Text>
+                <Text fontSize="15px" letterSpacing="3px" color="#5A4012" fontWeight="700" paddingBottom="20px"> <h2 clssName="text2">transparent. flexible. yours.</h2></Text>
+              </Box>
 
-
+              {/* <Button onClick={getUserData}>sxs</Button> */}
               {/**Travel Now form here */}
               <Button
                 marginTop="2px"
@@ -302,44 +321,44 @@ const Home = () => {
                 bg="#C6EAE7"
                 height="50px"
                 width="170px">Travel Now</Button>
-                <Modal
-              initialFocusRef={initialRef1}
-              finalFocusRef={finalRef1}
-              isOpen={isOpen1}
-              onClose={onClose1}
-              isCentered>
-              <ModalOverlay />
-              <ModalContent>
-                <ModalHeader>Travel Now</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody pb={6}>
-                  <FormControl>
-                    <FormLabel mt={4}>Full name</FormLabel>
-                    <Input name="FullName" type="text"  onChange={seter} value={travel.FullName} placeholder="Your Name" />
-                    <FormLabel mt={4}>Phone Number</FormLabel>
-                    <InputGroup>
-                      <InputLeftAddon children="+91" opacity='0.7' />
-                      <Input name="PhoneNumber" type="number" onChange={seter} placeholder="Phone Number" value={travel.PhoneNumber} />
-                    </InputGroup>
-                    <FormLabel mt={4}>E-Mail</FormLabel>
-                    <Input name="Email" type="text"  onChange={seter} placeholder="E-Mail" value={travel.Email}/>
-                    <FormLabel mt={4}>Current Location</FormLabel>
-                    <Input name="CurrentLocation" type="text"  onChange={seter} value={travel.CurrentLocation} placeholder="Your City"/>
-                    <FormLabel mt={4}>Travel Destinantion</FormLabel>
-                    <Input name="TravelDestination" type="text"  onChange={seter} value={travel.TravelDestination} ref={initialRef} placeholder="Travel To..." />
-                    <FormLabel mt={4}>Travel Start</FormLabel>
-                    <DatePicker color="#000"/>
-                    <FormLabel mt={4}>Travel End</FormLabel>
-                    <DatePicker color="#000"/>
-                  </FormControl>
-                </ModalBody>
-                <ModalFooter>
-                  <Button onClick={PostTravelData} type="submit" colorScheme="blue" mr={3}>Confirm Travel</Button>
-                  <Button onClick={onClose1}>Cancel</Button>
-                </ModalFooter>
-              </ModalContent>
-            </Modal>
-            {/**Travel Now form ends */}
+              <Modal
+                initialFocusRef={initialRef1}
+                finalFocusRef={finalRef1}
+                isOpen={isOpen1}
+                onClose={onClose1}
+                isCentered>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Travel Now</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody pb={6}>
+                    <FormControl>
+                      <FormLabel mt={4}>Full name</FormLabel>
+                      <Input name="FullName" type="text" onChange={seter} value={travel.FullName} placeholder="Your Name" />
+                      <FormLabel mt={4}>Phone Number</FormLabel>
+                      <InputGroup>
+                        <InputLeftAddon children="+91" opacity='0.7' />
+                        <Input name="PhoneNumber" type="number" onChange={seter} placeholder="Phone Number" value={travel.PhoneNumber} />
+                      </InputGroup>
+                      <FormLabel mt={4}>E-Mail</FormLabel>
+                      <Input name="Email" type="text" onChange={seter} placeholder="E-Mail" value={travel.Email} />
+                      <FormLabel mt={4}>Current Location</FormLabel>
+                      <Input name="CurrentLocation" type="text" onChange={seter} value={travel.CurrentLocation} placeholder="Your City" />
+                      <FormLabel mt={4}>Travel Destinantion</FormLabel>
+                      <Input name="TravelDestination" type="text" onChange={seter} value={travel.TravelDestination} ref={initialRef} placeholder="Travel To..." />
+                      <FormLabel mt={4}>Travel Start</FormLabel>
+                      <DatePicker color="#000" />
+                      <FormLabel mt={4}>Travel End</FormLabel>
+                      <DatePicker color="#000" />
+                    </FormControl>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button onClick={PostTravelData} type="submit" colorScheme="blue" mr={3}>Confirm Travel</Button>
+                    <Button onClick={onClose1}>Cancel</Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+              {/**Travel Now form ends */}
 
 
             </VStack>
@@ -356,13 +375,13 @@ const Home = () => {
           <Box width="100%" className="mountain" height="120vh">
             <Box width="100%">
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center" paddingTop="80px">
-                <Text color="#15233E" className="slide44" fontWeight="650" fontSize="60px">we take your brek</Text>
+                <Text color="#15233E" className="slide44" fontWeight="650">we take your brek</Text>
               </Flex>
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center">
-                <Text color="#15233E" fontWeight="650" fontSize="60px" mt="-5px">seriously.</Text>
+                <Text color="#15233E" className="slide44" fontWeight="650" mt="-5px">seriously.</Text>
               </Flex>
               <Flex flexWrap="wrap" justifyContent="center" width="100%" textAlign="center">
-                <Text color="#15233E" fontWeight="650" width="42vw" className="lasttext" fontSize="19px">we at brek.club understand how hectic and tiresome planning an entire trip can be. Therefore we decided to do it for you</Text>
+                <Text color="#15233E" fontWeight="650" width="42vw" className="lasttext">we at brek.club understand how hectic and tiresome planning an entire trip can be. Therefore we decided to do it for you</Text>
               </Flex>
             </Box>
           </Box>
@@ -371,17 +390,17 @@ const Home = () => {
 
           <Box className="slide4" width="100%" height="130vh">
             <Flex>
-              <Text className="pop" paddingLeft="40px" paddingTop="50px" color="#15233E" width="30%" fontSize="55px" fontWeight="750">a team that cares</Text>
+              <Text className="pop1" paddingLeft="40px" paddingTop="50px" color="#15233E" width="100%" fontWeight="750">a team that <br/>cares</Text>
             </Flex>
             <Flex>
-              <Text className="pop" paddingLeft="40px" paddingTop="50px" color="#15233E" width="60%" fontSize="25px" fontWeight="750">we are a group of students presently pursuing our engineering from IIT Madras, who love travelling. We understand that everyone right now is mentally exhausted and this is our small way to spread joy and give you a brek you really deserve</Text>
+              <Text className="pop2" paddingLeft="40px" paddingTop="50px" color="#15233E" fontWeight="750">we are a group of students presently pursuing our engineering from IIT Madras, who love travelling. We understand that everyone right now is mentally exhausted and this is our small way to spread joy and give you a brek you really deserve</Text>
             </Flex>
           </Box>
 
 
           {/* Footer */}
-          <LargeWithNewsletter/>
-          
+          <LargeWithNewsletter />
+
         </Box>
       </Box>
     </ChakraProvider>

@@ -1,3 +1,4 @@
+const mail = require("../model/email");
 const user = require("../model/userdata");
 const travelData = require("../model/userTravelData");
 
@@ -28,15 +29,20 @@ function TravelController() {
                     }
                 }
             }
-        },async userdata(){
-            const user_id = req.cookies.brekweb;
-            const data = await user.findOne({_id:user_id});
-
-            if(!data){
-                return res.status(400).json({message:"Register First!"});
-            }
-            const name = data.FullName;
-            return res.status(200).json({name});
+        },async userdata(req,res){
+            console.log("hello");
+            res.status(200).json({gota:req.rootUser});
+        },async emailOnly(req,res){
+            console.log("2");
+            // const {email} = req.body;
+            // if(!email){
+            //     return res.status(400).json({message:"Enter Details"});
+            // }
+            // const res1 = await mail.create(email).then(()=>{
+            //     console.log("Done");;
+            // }).catch(err=>{
+            //     console.log(err);
+            // });
         }
     }
 }

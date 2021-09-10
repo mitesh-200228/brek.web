@@ -1,91 +1,132 @@
-*{
+* {
     margin: 0;
-    font-family: 'Rambla', sans-serif;
+    font-family: "Rambla", sans-serif;
     padding: 0;
 }
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rambla&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rambla&display=swap");
 .logo {
     height: 50px;
 }
-.btn1{
-    font-family: 'Rambla', sans-serif;
+.btn1 {
+    font-family: "Rambla", sans-serif;
     font-weight: 650;
     border: 2px solid #5a4012;
 }
-.btn1:hover {
-}
-.css-ssh14d{
+.css-ssh14d {
     padding-right: 10px;
     padding-left: 20px;
 }
-.btn2{
-    box-shadow: -1px -1px 2px #FFFFFF, 4px 4px 10px #649793;
+.btn2 {
+    box-shadow: -1px -1px 2px #ffffff, 4px 4px 10px #649793;
 }
-@media only screen and (max-width:541px){
-    .text1{
-        font-size: 30px;
-    }
-    .text2{
-        font-size: 15px;
-        letter-spacing: 1px;
-    }
+.text1 {
+    font-size: 50px;
+    font-weight: 650;
+    color: #5a4012;
 }
-.text1{
-    font-size: 60px;
-}
-@media only screen and (max-width:544px){
-    .lasttext{
-        letter-spacing: 1px;
-        color: #fff;
-        font-size: 10px;
-    }
-}
-
-.img1{
-    background-size: cover;
+.sand {
     position: relative;
-    /* top: -300px; */
-}
-
-.sand{
-    position: relative;
-    top: 100px;
-    background: url('../images/sand.svg');
+    /* top: 100px; */
+    background: url("../images/sand.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: -17px;
 }
-.mountain{
-    background: url('../images/mountain.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
+.mainText{
+    padding-top: 105px;
 }
-.secondSlide{
-    background: url('../images/slide2.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 110%;
+@media only screen and (max-width: 541px) {
+    .text1 {
+        font-size: 30px;
+        color: #5a4012;
+    }
+    .text2 {
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+    .sand {
+        background-position-x: -50px;
+    }
+    .mainText{
+        padding-top: 65px;
+        padding-left: 50px;
+    }
 }
-.slide4{
-    background: url('../images/slide4.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.react-calendar__navigation,.react-calendar__month-view__days,.react-calendar__navigation__label{
-    color: #000;
-}
-.css-y02vo3{
-    height: 0px;
-}
-@media only screen and (max-width:446px){
-    .lasttext{
+@media only screen and (max-width: 544px) {
+    .lasttext {
+        letter-spacing: 1px;
         color: #fff;
         font-size: 10px;
     }
 }
-@media only screen and (max-width:887px){
-    .pop{
-        
+
+.img1 {
+    background-size: cover;
+    position: relative;
+    /* top: -300px; */
+}
+.pop1{
+    font-size: 55px;
+}
+.pop2{
+    font-size: 25px;
+    width: 63%;
+}
+@media only screen and (max-width:470px){
+    .pop2{
+        width: 100%;
+    }
+}
+.mountain {
+    background: url("../images/mountain.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+@media only screen and (max-width:350px){
+    .mountain{
+        background-position-x: -30px;
+    }
+}
+.secondSlide {
+    background: url("../images/slide2.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 110%;
+}
+.slide4 {
+    background: url("../images/slide4.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.react-calendar__navigation,
+.react-calendar__month-view__days,
+.react-calendar__navigation__label {
+    color: #000;
+}
+.css-y02vo3 {
+    height: 0px;
+}
+@media only screen and (max-width: 446px) {
+    .lasttext {
+        color: #fff;
+        font-size: 10px;
+    }
+}
+.css-34bctv .css-y02vo3 {
+    height: 0px;
+}
+.slide44{
+    font-size: 60px;
+}
+.lasttext{
+    font-size: 19px;
+}
+@media only screen and (max-width:470px){
+    .slide44{
+        font-size: 35px;
+    }
+    .lasttext{
+        font-size: 15px;
     }
 }

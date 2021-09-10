@@ -12,17 +12,17 @@ import {
     IconButton,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { BiMailSend } from 'react-icons/bi';
 import logo from '../images/logo_vector.png';
+import { sendSignInLinkToEmail } from '@firebase/auth';
 
 const Logo = (props: any) => {
     return (
         <img src={logo} alt=""/>
     );
 };
-
 const SocialButton = ({
     children,
     label,
@@ -34,13 +34,13 @@ const SocialButton = ({
 }) => {
     return (
         <chakra.button
-            bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
-            rounded={'full'}
-            w={8}
-            h={8}
-            cursor={'pointer'}
-            as={'a'}
-            href={href}
+        bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+        rounded={'full'}
+        w={8}
+        h={8}
+        cursor={'pointer'}
+        as={'a'}
+        href={href}
             display={'inline-flex'}
             alignItems={'center'}
             justifyContent={'center'}
@@ -63,6 +63,28 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 };
 
 export default function LargeWithNewsletter() {
+    const [emails,setEmail] = React.useState({
+        email:""
+    });
+    const handler = (e) => {
+        setEmail(e.target.value);
+    }
+    const trigger = async (e) => {
+        const {email} = emails;
+        e.preventDefault();
+        const res = await fetch('/emailonly',{
+            method:'POST',
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify({email})
+        });
+        const res2 = res.json(); 
+        if(res.status !== 200){
+            return; 
+        }
+        console.log(res2);
+    }
     return (
         <Box
             bg={useColorModeValue('gray.50', 'gray.900')}
@@ -93,6 +115,10 @@ export default function LargeWithNewsletter() {
                         <ListHeader>Stay up to date</ListHeader>
                         <Stack direction={'row'}>
                             <Input
+                                type="text"
+                                name="email"
+                                value={emails.email}
+                                onChange={handler}
                                 placeholder={'Your email address'}
                                 bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
                                 border={0}
@@ -101,6 +127,7 @@ export default function LargeWithNewsletter() {
                                 }}
                             />
                             <IconButton
+                                onClick={trigger}
                                 bg={useColorModeValue('green.400', 'green.800')}
                                 color={useColorModeValue('white', 'gray.800')}
                                 _hover={{
