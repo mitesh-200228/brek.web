@@ -149,7 +149,7 @@ const Home = () => {
     e.preventDefault();
     const { FullName, PhoneNumber, Email, CurrentLocation, TravelDestination } = travel;
 
-    const res = await fetch('userTravelData', {
+    const res = await fetch('/userTravelData', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
